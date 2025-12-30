@@ -63,14 +63,42 @@
       text-decoration: none;
       font-weight: 600;
       box-shadow: 0 6px 18px rgba(122,79,83,0.08), 0 2px 6px rgba(0,0,0,0.06);
-      transition: transform 0.18s ease, box-shadow 0.18s ease;
+      transition: transform 220ms cubic-bezier(.2,.8,.2,1), box-shadow 220ms ease, filter 180ms ease, color 160ms ease;
+      will-change: transform, box-shadow;
+      position: relative;
+      overflow: visible;
+    }
+
+    .btn::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 140%;
+      height: 140%;
+      transform: translate(-50%, -50%) scale(0.95);
+      background: radial-gradient(circle at 30% 20%, rgba(231,154,150,0.14), transparent 35%);
+      border-radius: 12px;
+      opacity: 0;
+      transition: opacity 220ms ease, transform 220ms ease;
+      pointer-events: none;
     }
 
     .btn:hover {
       filter: brightness(0.98);
-      transform: translateY(-2px);
-      box-shadow: 0 10px 24px rgba(122,79,83,0.12), 0 4px 10px rgba(0,0,0,0.08);
+      transform: translateY(-4px) scale(1.01);
+      box-shadow: 0 14px 30px rgba(122,79,83,0.14), 0 6px 12px rgba(0,0,0,0.08);
     }
+
+    .btn:hover::after { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+
+    .btn:active { transform: translateY(-1px) scale(0.995); box-shadow: 0 8px 20px rgba(122,79,83,0.10); }
+
+    .btn:focus-visible { outline: 3px solid rgba(198,111,108,0.18); outline-offset: 4px; }
+
+    /* change le texte du bouton au hover */
+    .btn:hover { color: var(--text); }
+    .btn.disabled { pointer-events: none; opacity: 0.86; }
 
     /* FORMULAIRE */
     form {
@@ -115,11 +143,36 @@
       font-weight: bold;
       cursor: pointer;
       width: 100%;
+      transition: transform 220ms cubic-bezier(.2,.8,.2,1), box-shadow 220ms ease, filter 180ms ease, color 160ms ease;
+      will-change: transform, box-shadow;
+      position: relative;
+      overflow: visible;
     }
 
-    form button:hover {
-      filter: brightness(0.98);
+    form button::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 160%;
+      height: 160%;
+      transform: translate(-50%, -50%) scale(0.95);
+      background: radial-gradient(circle at 30% 20%, rgba(231,154,150,0.12), transparent 35%);
+      border-radius: 12px;
+      opacity: 0;
+      transition: opacity 220ms ease, transform 220ms ease;
+      pointer-events: none;
     }
+
+    form button:hover { filter: brightness(0.98); transform: translateY(-3px) scale(1.01); box-shadow: 0 12px 26px rgba(122,79,83,0.12); }
+
+    form button:active { transform: translateY(-1px) scale(0.997); box-shadow: 0 8px 18px rgba(122,79,83,0.09); }
+
+    form button:hover::after { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+
+    form button:focus-visible { outline: 3px solid rgba(198,111,108,0.16); outline-offset: 3px; }
+
+    form button.disabled { pointer-events: none; opacity: 0.86; }
 
     /* CARTE DU MENU */
     .carte-menu {
@@ -180,6 +233,52 @@
       .menu-grid { grid-template-columns: 1fr; }
       .carte-menu { padding: 28px 14px 60px; }
     }
+
+    /* Overlay de chargement */
+    .loading-overlay{
+      position: fixed;
+      inset: 0;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      background: rgba(0,0,0,0.28);
+      z-index: 9999;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 220ms ease;
+    }
+
+    .loading-overlay.show{ opacity: 1; pointer-events: auto; }
+
+    .loading-box{
+      background: var(--card-bg);
+      color: var(--text);
+      padding: 18px 22px;
+      border-radius: 12px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+      display:flex;
+      align-items:center;
+      gap:12px;
+      min-width: 220px;
+    }
+
+    .loading-text{ font-weight:600; font-size:1rem; }
+
+    .dots{ display:inline-flex; gap:6px; margin-left:8px; }
+    .dots span{
+      display:inline-block;
+      width:8px; height:8px; border-radius:50%; background:var(--accent);
+      transform: translateX(0);
+      animation: pingpong 900ms ease-in-out infinite;
+    }
+    .dots span:nth-child(2){ animation-delay: 120ms }
+    .dots span:nth-child(3){ animation-delay: 240ms }
+
+    @keyframes pingpong{
+      0%{ transform: translateX(-4px); opacity:0.6 }
+      50%{ transform: translateX(4px); opacity:1 }
+      100%{ transform: translateX(-4px); opacity:0.6 }
+    }
   </style>
 </head>
 <body>
@@ -197,57 +296,19 @@
   <a href="https://www.google.com/maps/place/Petite+mairie+du+Plateau,+Abidjan" target="_blank" class="btn">📍 Localisation Mairie</a>
   <a href="https://google.com/maps?sca_esv=8ed32b8da9061e2f&output=search&q=la+voix+de+la+resurrection+tabernacle&source=lnms&fbs=AIIjpHx4nJjfGojPVHhEACUHPiMQYfURUq58J6Fn4NbJBsIlHfjq0kNfSbygTwSRrWtUGJ2okyCo_dM2pv2SOH7zOxQBCkeIHnPHabopnyi3f0Ffas9LMnh_7xwW7nLgmUIzNbGqC3Jl5V_uNdDV6O3HI9ivAxTx6MRTBSPA6EHyONh6aZV0tUmVccy4BOSje5yG9urepFMJsc5RcmQfnvVYOZWgP4wv1A&entry=mc&ved=1t:200715&ictx=111" target="_blank" class="btn">📍 Localisation Église</a>
 
-  <a href="#" class="btn">🍽️ Carte du menu</a>
+  <a href="menu.html" class="btn">🍽️ Carte du menu</a>
   <a href="#" class="btn">🎁 Liste des cadeaux</a>
 
   <a href="#confirmation" class="btn">✅ Confirmer ma présence</a>
 
-  <!-- Carte du menu: section ajoutée -->
-  <section id="carte" class="carte-menu">
-    <h2>Menu du mariage</h2>
-    <div class="menu-grid">
-      <article class="card">
-        <img src="image/riz-cantonnais.jpg" alt="Riz Cantonais">
-        <div class="card-title">Riz Cantonais</div>
-      </article>
-      <article class="card">
-        <img src="image/poisson braisé.jpg" alt="Poisson braisé">
-        <div class="card-title">Poisson braisé</div>
-      </article>
-      <article class="card">
-        <img src="image/poulet-diable.jpg" alt="Poulet grillé">
-        <div class="card-title">Poulet grillé</div>
-      </article>
-      <article class="card">
-        <img src="image/brochette de viande.jpg" alt="Brochette de viande">
-        <div class="card-title">Brochette de viande</div>
-      </article>
-    </div>
+  <!-- La carte du menu a été déplacée vers menu.html -->
 
-    <h2 style="margin-top:44px;">Accompagnements</h2>
-    <div class="menu-grid">
-      <article class="card">
-        <img src="image/alloco.jpg" alt="Alloco">
-        <div class="card-title">Alloco</div>
-      </article>
-      <article class="card">
-        <img src="image/frittes.jpg" alt="Frites">
-        <div class="card-title">Frites</div>
-      </article>
-      <article class="card">
-        <img src="image/attieke.jpg" alt="Attiéké">
-        <div class="card-title">Attiéké (huile blanc)</div>
-      </article>
-      <article class="card">
-        <img src="image/Foufou_banane.JPG" alt="Foufou">
-        <div class="card-title">Foufou</div>
-      </article>
+  <!-- Overlay de chargement (invisible par défaut) -->
+  <div id="loadingOverlay" class="loading-overlay" aria-hidden="true">
+    <div class="loading-box" role="status" aria-live="polite">
+      <div class="loading-text">Veuillez patienter<span class="dots"><span></span><span></span><span></span></span></div>
     </div>
-
-    <div class="center">
-      <a href="#" class="btn">Retour</a>
-    </div>
-  </section>
+  </div>
 
   <!-- Formulaire de confirmation -->
   <form id="confirmation">
@@ -273,16 +334,62 @@
   </form>
 
   <script>
-    // Redirection vers Google Forms
-    const form = document.querySelector("form");
-    form.addEventListener("submit", (e) => {
-      e.preventDefault();
-      window.open("https://docs.google.com/forms/d/e/1FAIpQLSeYIhTeZeEaN65oZ0tizWdfNDAzdhYsujsqEEjA8ynsLbbVJg/viewform?usp=dialog", "_blank");
-      alert("Merci ! Vous serez redirigé vers le formulaire 💖");
-      form.reset();
-    });
+    // Loading overlay + gestion des interactions boutons
+    (function(){
+      const googleFormUrl = "https://docs.google.com/forms/d/e/1FAIpQLSeYIhTeZeEaN65oZ0tizWdfNDAzdhYsujsqEEjA8ynsLbbVJg/viewform?usp=dialog";
+      const overlay = document.getElementById('loadingOverlay');
+      const form = document.querySelector("form");
+      const submitBtn = form.querySelector('button[type="submit"]');
+
+      function showOverlay(){ overlay.classList.add('show'); overlay.setAttribute('aria-hidden','false'); }
+      function hideOverlay(){ overlay.classList.remove('show'); overlay.setAttribute('aria-hidden','true'); }
+
+      function setWaitingEl(el, text){
+        if(!el) return;
+        el.dataset._orig = el.innerHTML;
+        el.innerHTML = text;
+        el.classList.add('disabled');
+        if('disabled' in el) el.disabled = true;
+      }
+      function restoreEl(el){
+        if(!el) return;
+        if(el.dataset._orig) el.innerHTML = el.dataset._orig;
+        el.classList.remove('disabled');
+        if('disabled' in el) el.disabled = false;
+      }
+
+      // show loading overlay then perform action
+      function withLoading(actionFn, triggerEl){
+        showOverlay();
+        setWaitingEl(triggerEl, 'Veuillez patienter...');
+        // durée minimale de l'animation (en ms)
+        const MIN = 1200;
+        setTimeout(() => {
+          try { actionFn(); } catch(e) { console.error(e); }
+          // Hide overlay shortly after action is started
+          setTimeout(()=>{ hideOverlay(); restoreEl(triggerEl); }, 700);
+        }, MIN);
+      }
+
+      // Form submit -> open Google Form in new tab after animation
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        if(submitBtn.disabled) return;
+        withLoading(()=> window.open(googleFormUrl, '_blank'), submitBtn);
+        form.reset();
+      });
+
+      // Links with .btn (non-anchors) -> open href after animation
+      document.querySelectorAll('a.btn').forEach(a => {
+        a.addEventListener('click', (ev) => {
+          const href = (a.getAttribute('href') || '').trim();
+          if(!href || href.startsWith('#')) return; // ignore anchors or empty
+          ev.preventDefault();
+          withLoading(()=> window.open(href, a.target || '_self'), a);
+        });
+      });
+    })();
   </script>
 
 </body>
 </html>
-
