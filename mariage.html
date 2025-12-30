@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mariage de LOLONIE & CHARITE</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #fff6f6;
+      --text: #7a4f53;
+      --accent: #e79a96;
+      --accent-dark: #c66f6c;
+      --card-bg: #ffffff;
+      --border: #e8d7d7;
+      --btn-text: #ffffff;
+      --shadow: rgba(0,0,0,0.12);
+    }
+
+    body {
+      font-family: 'Open Sans', sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      text-align: center;
+      margin: 0;
+      padding: 0;
+    }
+
+    h1 {
+      font-size: 1.5em;
+      margin-top: 40px;
+      color: var(--text);
+    }
+
+    h2 {
+      font-family: 'Great Vibes', cursive;
+      font-size: 2.8em;
+      margin: 0;
+      color: var(--text);
+      letter-spacing: 0.8px;
+      word-spacing: 8px;
+    }
+
+    .details {
+      margin-top: 20px;
+      font-size: 1.1em;
+    }
+
+    .details p {
+      margin: 8px 0;
+    }
+
+    .btn {
+      display: block;
+      background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+      color: var(--btn-text);
+      padding: 15px;
+      margin: 15px auto;
+      width: 80%;
+      max-width: 900px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      box-shadow: 0 6px 18px rgba(122,79,83,0.08), 0 2px 6px rgba(0,0,0,0.06);
+      transition: transform 0.18s ease, box-shadow 0.18s ease;
+    }
+
+    .btn:hover {
+      filter: brightness(0.98);
+      transform: translateY(-2px);
+      box-shadow: 0 10px 24px rgba(122,79,83,0.12), 0 4px 10px rgba(0,0,0,0.08);
+    }
+
+    /* FORMULAIRE */
+    form {
+      background-color: var(--card-bg);
+      border-radius: 20px;
+      box-shadow: 2px 2px 8px var(--shadow);
+      max-width: 600px;
+      margin: 30px auto;
+      padding: 20px;
+      text-align: left;
+    }
+
+    form h3 {
+      text-align: center;
+      font-family: 'Open Sans';
+      color: var(--text);
+      margin-top: 0;
+    }
+
+    form label {
+      font-weight: 600;
+      display: block;
+      margin-bottom: 6px;
+      color: var(--text);
+    }
+
+    form input, form select, form textarea {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      font-family: 'Open Sans', sans-serif;
+    }
+
+    form button {
+      background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+      color: var(--btn-text);
+      border: none;
+      padding: 12px 25px;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+      width: 100%;
+    }
+
+    form button:hover {
+      filter: brightness(0.98);
+    }
+
+    /* CARTE DU MENU */
+    .carte-menu {
+      padding: 40px 24px 80px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .carte-menu h2 {
+      color: var(--text);
+      font-size: 1.8rem;
+      margin: 18px 0 22px;
+    }
+
+    .menu-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 30px 36px;
+      align-items: start;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border-radius: 12px;
+      padding: 14px;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+      text-align: center;
+      overflow: hidden;
+    }
+
+    .card img {
+      width: 100%;
+      height: 140px;
+      object-fit: cover;
+      border-radius: 10px;
+      display: block;
+      margin-bottom: 12px;
+      background: #f2f2f2;
+    }
+
+    .card .card-title {
+      color: var(--text);
+      font-weight: 600;
+      font-size: 0.98rem;
+      padding: 6px 4px 2px;
+    }
+
+    .carte-menu .center {
+      text-align: center;
+      margin-top: 28px;
+    }
+
+    @media (max-width: 1000px) {
+      .menu-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 520px) {
+      .menu-grid { grid-template-columns: 1fr; }
+      .carte-menu { padding: 28px 14px 60px; }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Mariage de</h1>
+  <h2>lolonie & charite </h2>
+
+  <div class="details">
+    <p>📅 <strong>Date :</strong> 5 mars 2026</p>
+    <p>⏰ <strong>Cérémonie civile :</strong> 9h30 – mairie de koumassi </p>
+    <p>⛪ <strong>Cérémonie religieuse :</strong> 12h30 – Église la voix de la resurrection</p>
+  </div>
+
+  <!-- Liens Google Maps -->
+  <a href="https://www.google.com/maps/place/Petite+mairie+du+Plateau,+Abidjan" target="_blank" class="btn">📍 Localisation Mairie</a>
+  <a href="https://google.com/maps?sca_esv=8ed32b8da9061e2f&output=search&q=la+voix+de+la+resurrection+tabernacle&source=lnms&fbs=AIIjpHx4nJjfGojPVHhEACUHPiMQYfURUq58J6Fn4NbJBsIlHfjq0kNfSbygTwSRrWtUGJ2okyCo_dM2pv2SOH7zOxQBCkeIHnPHabopnyi3f0Ffas9LMnh_7xwW7nLgmUIzNbGqC3Jl5V_uNdDV6O3HI9ivAxTx6MRTBSPA6EHyONh6aZV0tUmVccy4BOSje5yG9urepFMJsc5RcmQfnvVYOZWgP4wv1A&entry=mc&ved=1t:200715&ictx=111" target="_blank" class="btn">📍 Localisation Église</a>
+
+  <a href="#" class="btn">🍽️ Carte du menu</a>
+  <a href="#" class="btn">🎁 Liste des cadeaux</a>
+
+  <a href="#confirmation" class="btn">✅ Confirmer ma présence</a>
+
+  <!-- Carte du menu: section ajoutée -->
+  <section id="carte" class="carte-menu">
+    <h2>Menu du mariage</h2>
+    <div class="menu-grid">
+      <article class="card">
+        <img src="image/riz-cantonnais.jpg" alt="Riz Cantonais">
+        <div class="card-title">Riz Cantonais</div>
+      </article>
+      <article class="card">
+        <img src="image/poisson braisé.jpg" alt="Poisson braisé">
+        <div class="card-title">Poisson braisé</div>
+      </article>
+      <article class="card">
+        <img src="image/poulet-diable.jpg" alt="Poulet grillé">
+        <div class="card-title">Poulet grillé</div>
+      </article>
+      <article class="card">
+        <img src="image/brochette de viande.jpg" alt="Brochette de viande">
+        <div class="card-title">Brochette de viande</div>
+      </article>
+    </div>
+
+    <h2 style="margin-top:44px;">Accompagnements</h2>
+    <div class="menu-grid">
+      <article class="card">
+        <img src="image/alloco.jpg" alt="Alloco">
+        <div class="card-title">Alloco</div>
+      </article>
+      <article class="card">
+        <img src="image/frittes.jpg" alt="Frites">
+        <div class="card-title">Frites</div>
+      </article>
+      <article class="card">
+        <img src="image/attieke.jpg" alt="Attiéké">
+        <div class="card-title">Attiéké (huile blanc)</div>
+      </article>
+      <article class="card">
+        <img src="image/Foufou_banane.JPG" alt="Foufou">
+        <div class="card-title">Foufou</div>
+      </article>
+    </div>
+
+    <div class="center">
+      <a href="#" class="btn">Retour</a>
+    </div>
+  </section>
+
+  <!-- Formulaire de confirmation -->
+  <form id="confirmation">
+    <h3 style="text-align:center; font-family:'Open Sans'; color:#5e3c2d;">Confirmez votre présence</h3>
+    <label for="nom">Nom et prénom</label>
+    <input type="text" id="nom" name="nom" placeholder="Entrez votre nom complet" required>
+
+    <label for="email">Adresse e-mail</label>
+    <input type="email" id="email" name="email" placeholder="exemple@email.com" required>
+
+    <label for="accompagnement">Nombre de personnes</label>
+    <select id="accompagnement" name="accompagnement">
+      <option value="1">Je viens seul(e)</option>
+      <option value="2">Je viens accompagné(e)</option>
+      <option value="3">Nous serons 3</option>
+      <option value="4">Nous serons 4</option>
+    </select>
+
+    <label for="message">Message (facultatif)</label>
+    <textarea id="message" name="message" rows="3" placeholder="Un petit mot pour les mariés..."></textarea>
+
+    <button type="submit">Envoyer ma confirmation 💌</button>
+  </form>
+
+  <script>
+    // Redirection vers Google Forms
+    const form = document.querySelector("form");
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+      window.open("https://docs.google.com/forms/d/e/1FAIpQLSeYIhTeZeEaN65oZ0tizWdfNDAzdhYsujsqEEjA8ynsLbbVJg/viewform?usp=dialog", "_blank");
+      alert("Merci ! Vous serez redirigé vers le formulaire 💖");
+      form.reset();
+    });
+  </script>
+
+</body>
+</html>
